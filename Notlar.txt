@@ -1,0 +1,68 @@
+1 - Neden hem business katmanýnda hem de data katmanýnda crud iþlemleri yapýyoruz ?
+
+*  iþ katmaný ve veri katmaný arasýndaki ayrým, uygulamanýn daha iyi yönetilmesini ve bakýmýný saðlar, 
+güvenlik ve doðrulama iþlemlerini kolaylaþtýrýr ve veri saklama ve yönetme iþlevlerini daha iyi organize eder. 
+Bu nedenle, CRUD iþlemlerini her iki katmanda da iþlemek genellikle iyi bir uygulama tasarýmý pratiðidir.
+
+
+
+
+
+
+2-
+ public class EfRoomDal : GenericRepository<Room>, IRoomDal
+    {
+        public EfRoomDal(Context context) : base(context)
+        { 
+                                                                       
+        }
+    }
+
+
+  *    GenericRepository den miras aldýn.GenericRepository diðer tarafta context i constructor üzerinde geçmiþti.
+       O zaman sen de burada constructor ýnda contexti geçmen gerek.
+
+
+
+
+3-
+     services.AddDbContext<Context>();
+
+            services.AddScoped<IStaffDal, EfStaffDal>();
+            services.AddScoped<IStaffService, StaffManager>();
+
+* 
+services.AddDbContext<Context>();: Bu satýr, DbContext sýnýfýnýn tür parametresi olarak Context sýnýfýný alarak bir veritabaný 
+baðlamý ekler. Bu, Entity Framework kullanarak veritabanýna eriþim saðlamak için gerekli olan baðlamý (context) yapýlandýrýr.
+Context sýnýfý, veritabaný tablolarýný ve iliþkilerini temsil eden bir sýnýftýr ve ,
+Entity Framework tarafýndan otomatik olarak oluþturulur.
+
+services.AddScoped<IStaffDal, EfStaffDal>();: Bu satýr, baðýmlýlýk enjeksiyonu (dependency injection) kullanarak 
+IStaffDal arayüzü için bir somut sýnýf olan EfStaffDal'ý ekler. Bu, veri eriþim katmaný (data access layer) için
+bir hizmet tedarik eder. Yani, IStaffDal arayüzünü kullanarak veri tabaný iþlemleri yapmak için EfStaffDal sýnýfýný kullanabilirsiniz.
+
+
+4-
+
+ services.AddCors(opt =>
+            {
+                opt.AddPolicy("OtelApiCors", opts =>
+                 {
+                     opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                 });
+            });
+
+*
+Bahsettiðiniz kod parçasý, bir ASP.NET Core uygulamasýnda CORS (Cross-Origin Resource Sharing - Farklý Kaynaklardan Veri Alýmý)
+yapýlandýrmasýný tanýmlar. CORS, bir web uygulamasýnýn tarayýcýda çalýþan bir istemciden (örneðin, bir web sitesi) baþka bir 
+sunucudaki kaynaklara (API'ler gibi) eriþmesine izin veren bir güvenlik mekanizmasýdýr.
+
+
+services.AddCors(opt => { ... });: Bu kod bloðu, AddCors metodu kullanarak CORS hizmetini uygulamanýza ekler. 
+Bu iþlem, uygulamanýzýn baþka kaynaklardan veri alabilmesini veya baþka kaynaklara veri gönderebilmesini saðlar.
+
+AllowAnyHeader(): Bu kod parçasý, isteðin herhangi bir baþlýk (header) ile gönderilmesine izin verir. Baþlýklar genellikle HTTP isteði sýrasýnda taþýnan verileri ve kimliði doðrulama bilgilerini içerir.
+
+AllowAnyMethod(): Bu kod parçasý, isteðin herhangi bir HTTP metodunu (GET, POST, PUT, DELETE, vb.) kullanmasýna izin verir. Bu, farklý iþlemleri gerçekleþtiren isteklerin kabul edilmesine olanak tanýr.
+
+
