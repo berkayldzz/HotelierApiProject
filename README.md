@@ -5,20 +5,20 @@ Proje 2 temel panelden oluşmaktadır.Default(kullanıcı) panelinde katalog, il
 
 ## Kullanılan Araçlar & Alt Yapılar & Teknolojiler
 
--Asp.Net Core Api
--Asp.Net Identity
--Swagger
--Postman
--Api Consume
--Rapid Api
--Json Web Token
--Login
--Register
--AspNet Core 5.0
--Fluent Validation
--N Tier Architecture
--DTO Layer
--Mvc
--Entity Framework Core
--Repository Design Pattern
--Mail Gönderme İşlemleri
+- Asp.Net Core Api
+- Asp.Net Identity
+- Swagger
+- Postman
+- Api Consume
+- Rapid Api
+- Json Web Token
+- Login
+- Register
+- AspNet Core 5.0
+- Fluent Validation
+- N Tier Architecture
+- DTO Layer
+- Mvc
+- Entity Framework Core
+- Repository Design Pattern
+- Mail Gönderme İşlemleri
