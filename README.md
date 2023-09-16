@@ -1,5 +1,5 @@
 # Asp.Net Core Hotel Project ✔
-Veri tabanı olarak MSSQL kullanmış olduğum projenin backend kısmı tamamıyla Api ile kodlandı. Frontend kısmında ise api yapısı mvc controller ile consume edildi.
+Veri tabanı olarak MSSQL kullanmış olduğum projenin backend kısmı tamamıyla Api ile kodlandı. Frontend kısmında ise api yapısı Mvc controller ile consume edildi.
 
 Proje 2 temel panelden oluşmaktadır.Default(kullanıcı) panelinde katalog, iletişim, rezervasyon, hakkımızda gibi bilgiler yer almaktadır.Admin panelinde ise birçok işlemi güncelleyip,ekleyip,silip kontrol edebildiğimiz bir arayüzden oluşmaktadır.
 
